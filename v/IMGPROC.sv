@@ -53,7 +53,7 @@ greyscale g1(
         .iCLK(iCLK),
         .iRST(iRST),
         .iDVAL(iDVAL),
-        .vertical(???),
+        .vertical(1'b1),
         .row_2_col_0(gs_out),
         .pixel_out(conv_out)
         );
