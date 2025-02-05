@@ -85,16 +85,6 @@ Line_Buffer1 	u0	(	.clken(iDVAL),
 						.shiftout(shift_out)
 						);
 
-IMGPROC imgprc (
-	.tap0(mDATA_1),
-	.tap1(mDATA_0),
-    .clk(iCLK),
-    .rst(iRST),
-    .DVAL(iDVAL)
-);
-
-
-
 always@(posedge iCLK or negedge iRST)
 begin
 	if(!iRST)
