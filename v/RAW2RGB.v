@@ -103,7 +103,7 @@ begin
 		mDVAL		<=	{iY_Cont[0]|iX_Cont[0]}	?	1'b0	:	iDVAL;
 		if({iY_Cont[0],iX_Cont[0]}==2'b10)
 		begin
-			mCCD_R	<=	mDATA_0;
+			atu	<=	mDATA_0;
 			mCCD_G	<=	mDATAd_0+mDATA_1;
 			mCCD_B	<=	mDATAd_1;
 		end	

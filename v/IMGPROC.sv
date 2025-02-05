@@ -30,7 +30,7 @@ logic   [11:0]  gs_out, conv_out;
 assign oRed = conv_out;
 assign oBlue = conv_out;
 assign oGreen = conv_out;
-assign oDVAL = ???;
+assign oDVAL = 1'b1;
 
 
 Line_Buffer1 	u0	(	.clken(iDVAL),
