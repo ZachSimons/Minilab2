@@ -9,7 +9,7 @@
 //   Kits made by Terasic.  Other use of this code, including the selling 
 //   ,duplication, or modification of any portion is strictly prohibited.
 //
-// Disclaimer:
+// Disclaimer: 
 //
 //   This VHDL/Verilog or C/C++ source code is intended as a design reference
 //   which illustrates how these types of functions can be implemented.
@@ -69,6 +69,7 @@ reg		[11:0]	mDATAd_1;
 reg		[11:0]	mCCD_R;
 reg		[12:0]	mCCD_G;
 reg		[11:0]	mCCD_B;
+wire [11:0] shift_out;
 reg				mDVAL;
 
 assign	oRed	=	mCCD_R[11:0];
@@ -80,7 +81,19 @@ Line_Buffer1 	u0	(	.clken(iDVAL),
 						.clock(iCLK),
 						.shiftin(iDATA),
 						.taps0x(mDATA_1),
-						.taps1x(mDATA_0)	);
+						.taps1x(mDATA_0),	
+						.shiftout(shift_out)
+						);
+
+IMGPROC imgprc (
+	.tap0(mDATA_1),
+	.tap1(mDATA_0),
+    .clk(iCLK),
+    .rst(iRST),
+    .DVAL(iDVAL)
+);
+
+
 
 always@(posedge iCLK or negedge iRST)
 begin
