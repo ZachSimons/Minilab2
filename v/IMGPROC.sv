@@ -1,13 +1,14 @@
-module IMGPROC(	oRed,
-oGreen,
-oBlue,
-oDVAL,
-iX_Cont,
-iY_Cont,
-iDATA,
-iDVAL,
-iCLK,
-iRST
+module IMGPROC(	
+    oRed,
+    oGreen,
+    oBlue,
+    oDVAL,
+    iX_Cont,
+    iY_Cont,
+    iDATA,
+    iDVAL,
+    iCLK,
+    iRST
 );
 
 input	[10:0]	iX_Cont;
@@ -40,7 +41,7 @@ Line_Buffer1 	u0	(	.clken(iDVAL),
         .shiftout(shift_out)
         );
 
-greyscale greyscale(
+greyscale g1(
         .data_in_2(mDATA_0), 
         .data_in_1(mDATA_1), 
         .clk(iCLK), 
@@ -48,7 +49,7 @@ greyscale greyscale(
         .data_out(gs_out)
         );
 
- convolution convolution(
+ convolution c1(
         .iCLK(iCLK),
         .iRST(iRST),
         .iDVAL(iDVAL),
