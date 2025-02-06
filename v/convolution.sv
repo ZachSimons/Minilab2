@@ -28,27 +28,27 @@ CONV_BUFFER u0 (
 	.clock(clk),
 	.shiftin(pixel_in),
 	.shiftout(),
-	.taps0x(row_2_col_0),
-	.taps1x(row_1_col_0),
-	.taps2x(row_0_col_0)
+	.taps0x(row_2_col_2),
+	.taps1x(row_1_col_2),
+	.taps2x(row_0_col_2)
 );
 
 // FFs for cols 1 & 2
 always @(posedge clk, negedge rst_n) begin
     if (!rst_n) begin
         row_0_col_1 <= 0;
-        row_0_col_2 <= 0;
+        row_0_col_0 <= 0;
         row_1_col_1 <= 0;
-        row_1_col_2 <= 0;
+        row_1_col_0 <= 0;
         row_2_col_1 <= 0;
-        row_2_col_2 <= 0;
+        row_2_col_0 <= 0;
     end
-    row_0_col_1 <= row_0_col_0;
-    row_0_col_2 <= row_0_col_1;
-    row_1_col_1 <= row_1_col_0;
-    row_1_col_2 <= row_1_col_1;
-    row_2_col_1 <= row_2_col_0;
-    row_2_col_2 <= row_2_col_1;
+    row_0_col_1 <= row_0_col_2;
+    row_0_col_0 <= row_0_col_1;
+    row_1_col_1 <= row_1_col_2;
+    row_1_col_0 <= row_1_col_1;
+    row_2_col_1 <= row_2_col_2;
+    row_2_col_0 <= row_2_col_1;
 end
 
 //sobel vertical
@@ -95,9 +95,5 @@ assign pixel_out_hor =  (sobel_hor[0][0] * row_0_col_0) +
 
 assign pixel_out_noabs = vertical ? pixel_out_vert : pixel_out_hor;
 assign pixel_out = pixel_out_noabs[11] ? -pixel_out_noabs : pixel_out_noabs;
-
-
-
-
 
 endmodule
