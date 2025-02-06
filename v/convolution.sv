@@ -1,4 +1,4 @@
-module convolution (
+module convolution ( 
     input iCLK,
     input iRST,
     input iDVAL,
@@ -34,7 +34,6 @@ CONV_BUFFER u0 (
 );
 
 // FFs for cols 1 & 2
-logic [11:0] row_2_col_1, row_2_col_2;
 always @(posedge clk, negedge rst_n) begin
     if (!rst_n) begin
         row_0_col_1 <= 0;
