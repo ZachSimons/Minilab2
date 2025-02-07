@@ -13,7 +13,7 @@ logic [11:0] pixel_out_vert, pixel_out_hor, pixel_out_noabs;
 
 // wire for col 0, reg for col 1 & 2
 logic [11:0] row_0_col_0;
-logic [11:0] row_0_col_1, row_0_col_2;
+logic [11:0] row_0_col_1, row_0_col_2; 
 
 logic [11:0] row_1_col_0;
 logic [11:0] row_1_col_1, row_1_col_2;
@@ -21,20 +21,24 @@ logic [11:0] row_1_col_1, row_1_col_2;
 logic [11:0] row_2_col_0;
 logic [11:0] row_2_col_1, row_2_col_2;
 
+logic rst_n;
+assign rst_n = iRST;
+
 // convolution buffer with 3 taps for 3x3 square
-CONV_BUFFER u0 (
-    .aclr(~rst_n),
+Line_Buffer1 u0 (
+    //.aclr(~rst_n),
 	.clken(iDVAL),
-	.clock(clk),
+	.clock(iCLK),
 	.shiftin(pixel_in),
 	.shiftout(),
-	.taps0x(row_2_col_2),
-	.taps1x(row_1_col_2),
-	.taps2x(row_0_col_2)
+	.taps0x(row_1_col_2),
+	.taps1x(row_0_col_2)
 );
 
+// pixel_in is our row 2 col 2 (farthest pixel)
+
 // FFs for cols 1 & 2
-always @(posedge clk, negedge rst_n) begin
+always @(posedge iCLK, negedge rst_n) begin
     if (!rst_n) begin
         row_0_col_1 <= 0;
         row_0_col_0 <= 0;
@@ -43,12 +47,14 @@ always @(posedge clk, negedge rst_n) begin
         row_2_col_1 <= 0;
         row_2_col_0 <= 0;
     end
+    else begin
     row_0_col_1 <= row_0_col_2;
     row_0_col_0 <= row_0_col_1;
     row_1_col_1 <= row_1_col_2;
     row_1_col_0 <= row_1_col_1;
-    row_2_col_1 <= row_2_col_2;
+    row_2_col_1 <= pixel_in;
     row_2_col_0 <= row_2_col_1;
+    end
 end
 
 //sobel vertical
@@ -81,7 +87,7 @@ assign pixel_out_vert = (sobel_vert[0][0] * row_0_col_0) +
                         (sobel_vert[1][2] * row_1_col_2) + 
                         (sobel_vert[2][0] * row_2_col_0) + 
                         (sobel_vert[2][1] * row_2_col_1) + 
-                        (sobel_vert[2][2] * row_2_col_2);
+                        (sobel_vert[2][2] * pixel_in);
 
 assign pixel_out_hor =  (sobel_hor[0][0] * row_0_col_0) + 
                         (sobel_hor[0][1] * row_0_col_1) + 
@@ -91,7 +97,7 @@ assign pixel_out_hor =  (sobel_hor[0][0] * row_0_col_0) +
                         (sobel_hor[1][2] * row_1_col_2) + 
                         (sobel_hor[2][0] * row_2_col_0) + 
                         (sobel_hor[2][1] * row_2_col_1) + 
-                        (sobel_hor[2][2] * row_2_col_2);
+                        (sobel_hor[2][2] * pixel_in);
 
 assign pixel_out_noabs = vertical ? pixel_out_vert : pixel_out_hor;
 assign pixel_out = pixel_out_noabs[11] ? -pixel_out_noabs : pixel_out_noabs;

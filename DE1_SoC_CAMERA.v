@@ -311,18 +311,44 @@ CCD_Capture			u3	(
 						   );
 //D5M raw date convert to RGB data
 
+wire [11:0] rgb_green, rgb_red, rgb_blue, img,_red, img_green, img_blue;
+wire rgb_data_valid, img_data_valid;
+
+assign sCCD_DVAL = rgb_data_valid;
+//assign sCCD_DVAL = SW[1] ? img_data_valid : rgb_data_valid;
+assign sCCD_R = SW[1] ? img_green : rgb_red;
+assign sCCD_G = SW[1] ? img_green : rgb_green;
+assign sCCD_B = SW[1] ? img_blue : rgb_blue;
+
+
 RAW2RGB				u4	(	
 							.iCLK(D5M_PIXLCLK),
 							.iRST(DLY_RST_1),
 							.iDATA(mCCD_DATA),
 							.iDVAL(mCCD_DVAL),
-							.oRed(sCCD_R),
-							.oGreen(sCCD_G),
-							.oBlue(sCCD_B),
-							.oDVAL(sCCD_DVAL),
+							.oRed(rgb_red),
+							.oGreen(rgb_green),
+							.oBlue(rgb_blue),
+							.oDVAL(rgb_data_valid),
 							.iX_Cont(X_Cont),
 							.iY_Cont(Y_Cont)
 						   );
+
+
+IMGPROC           i2 (	 
+                     .oRed(img_red),
+                     .oGreen(img_green),
+                     .oBlue(img_blue),
+                     .oDVAL(img_data_valid),
+                     .iX_Cont(X_Cont),
+                     .iY_Cont(Y_Cont),
+                     .iDATA(mCCD_DATA),
+                     .iDVAL(mCCD_DVAL),
+                     .iCLK(D5M_PIXLCLK),
+                     .iRST(DLY_RST_1),
+                     .conv(SW[2]),
+                     .conv_on(SW[3])
+                    );
 
 //Frame count display
 SEG7_LUT_6 			u5	(	
