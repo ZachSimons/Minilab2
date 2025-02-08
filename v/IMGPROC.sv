@@ -1,71 +1,54 @@
-module IMGPROC(	 
-    oRed,
-    oGreen,
-    oBlue,
-    oDVAL,
-    iX_Cont,
-    iY_Cont,
+module IMGPROC(
     iDATA,
     iDVAL,
     iCLK,
     iRST,
-    conv,
-    conv_on
+    conv_dir,
+    conv_on,
+    img_proc_out
 );
 
-input	[10:0]	iX_Cont;
-input	[10:0]	iY_Cont;
 input	[11:0]	iDATA;
-input			iDVAL;
-input			iCLK;
-input			iRST;
-input conv, conv_on;
-output	[11:0]	oRed;
-output	[11:0]	oGreen;
-output	[11:0]	oBlue;
-output			oDVAL;
+input		iDVAL;
+input		iCLK;
+input		iRST;
+input           conv_dir; 
+input           conv_on;
+output  [11:0]  img_proc_out;
+
 wire	[11:0]	mDATA_0;
-wire	[11:0]	mDATA_1;
-
-logic   [11:0]  shift_out;
 logic   [11:0]  gs_out, conv_out;
-logic [10:0] x_out, y_out;
 
-assign oRed = conv_on ? conv_out : gs_out;
-assign oBlue = conv_on ? conv_out : gs_out;
-assign oGreen = conv_on ? conv_out : gs_out;
-assign oDVAL = (x_out > 1) & (y_out > 1);
+// assigning pixel output based off if convolution is enabled
+assign img_proc_out = conv_on ? conv_out : gs_out;
 
-
-LINE_BUFFER_1TAP 	u0	(	.clken(iDVAL),
+// line buffer where tap output will be used as input for greyscale
+LINE_BUFFER_1TAP u0(	
+        .clken(iDVAL),
         .clock(iCLK),
         .shiftin(iDATA),
-        //.taps0x(mDATA_1),
-        //.taps1x(mDATA_0),
         .taps(mDATA_0),	
-        .shiftout(shift_out)
+        .shiftout()
         );
 
+// outputting greyscale pixel by taking average of 2x2 matrix
 greyscale g1(
         .data_in_2(mDATA_0), 
         .data_in_1(iDATA), 
         .clk(iCLK), 
-        .rst(iRST), 
+        .rst_n(iRST), 
         .gs_out(gs_out),
-        .y(iY_Cont),
-        .x(iX_Cont),
-        .x_out(x_out),
-        .y_out(y_out)
         );
 
+// using greyscale output as input for 3x3 convolution
+// can select between vertical or horizontal edge detection
  convolution c1(
         .iCLK(iCLK),
         .iRST(iRST),
         .iDVAL(iDVAL),
-        .vertical(conv),
+        .vertical(conv_dir),
         .pixel_in(gs_out),
         .pixel_out(conv_out)
         );
-
 
 endmodule

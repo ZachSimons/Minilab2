@@ -1,5 +1,5 @@
 Flow Summary report for DE1_SoC_CAMERA
-Fri Feb  7 15:46:35 2025
+Sat Feb  8 13:20:19 2025
 Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 
 
@@ -34,15 +34,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +---------------------------------+------------------------------------------------+
-; Flow Status                     ; Successful - Fri Feb  7 15:30:56 2025          ;
+; Flow Status                     ; Successful - Sat Feb  8 13:11:15 2025          ;
 ; Quartus Prime Version           ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                 ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                 ;
 ; Family                          ; Cyclone V                                      ;
 ; Device                          ; 5CSEMA5F31C6                                   ;
 ; Timing Models                   ; Final                                          ;
-; Logic utilization (in ALMs)     ; 748 / 32,070 ( 2 % )                           ;
-; Total registers                 ; 1316                                           ;
+; Logic utilization (in ALMs)     ; 735 / 32,070 ( 2 % )                           ;
+; Total registers                 ; 1313                                           ;
 ; Total pins                      ; 226 / 457 ( 49 % )                             ;
 ; Total virtual pins              ; 0                                              ;
 ; Total block memory bits         ; 105,352 / 4,065,280 ( 3 % )                    ;
