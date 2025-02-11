@@ -1,5 +1,5 @@
 Flow report for DE1_SoC_CAMERA
-Sat Feb  8 13:11:21 2025
+Tue Feb 11 16:30:37 2025
 Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 
 
@@ -41,18 +41,18 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +---------------------------------+------------------------------------------------+
-; Flow Status                     ; Successful - Sat Feb  8 13:11:15 2025          ;
+; Flow Status                     ; Successful - Tue Feb 11 16:30:20 2025          ;
 ; Quartus Prime Version           ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
 ; Revision Name                   ; DE1_SoC_CAMERA                                 ;
 ; Top-level Entity Name           ; DE1_SoC_CAMERA                                 ;
 ; Family                          ; Cyclone V                                      ;
 ; Device                          ; 5CSEMA5F31C6                                   ;
 ; Timing Models                   ; Final                                          ;
-; Logic utilization (in ALMs)     ; 735 / 32,070 ( 2 % )                           ;
-; Total registers                 ; 1313                                           ;
+; Logic utilization (in ALMs)     ; 768 / 32,070 ( 2 % )                           ;
+; Total registers                 ; 1267                                           ;
 ; Total pins                      ; 226 / 457 ( 49 % )                             ;
 ; Total virtual pins              ; 0                                              ;
-; Total block memory bits         ; 105,352 / 4,065,280 ( 3 % )                    ;
+; Total block memory bits         ; 90,016 / 4,065,280 ( 2 % )                     ;
 ; Total DSP Blocks                ; 15 / 87 ( 17 % )                               ;
 ; Total HSSI RX PCSs              ; 0                                              ;
 ; Total HSSI PMA RX Deserializers ; 0                                              ;
@@ -68,7 +68,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/08/2025 13:09:39 ;
+; Start date & time ; 02/11/2025 16:27:35 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; DE1_SoC_CAMERA      ;
 +-------------------+---------------------+
@@ -79,7 +79,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 91759833344.173904177913964            ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 91759833344.173931285509696            ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; MISC_FILE                           ; v/sdram_pll.cmp                        ; --            ; --          ; --         ;
@@ -104,11 +104,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:07     ; 1.0                     ; 4969 MB             ; 00:00:15                           ;
-; Fitter               ; 00:01:23     ; 1.1                     ; 7650 MB             ; 00:07:55                           ;
-; Assembler            ; 00:00:03     ; 1.0                     ; 4889 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:05     ; 1.8                     ; 5363 MB             ; 00:00:08                           ;
-; Total                ; 00:01:38     ; --                      ; --                  ; 00:08:21                           ;
+; Analysis & Synthesis ; 00:00:30     ; 1.0                     ; 4965 MB             ; 00:00:19                           ;
+; Fitter               ; 00:01:51     ; 1.1                     ; 7654 MB             ; 00:08:08                           ;
+; Assembler            ; 00:00:07     ; 1.0                     ; 4886 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:15     ; 1.4                     ; 5376 MB             ; 00:00:09                           ;
+; Total                ; 00:02:43     ; --                      ; --                  ; 00:08:40                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -117,10 +117,10 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; win-8106         ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; win-8106         ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; win-8106         ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; win-8106         ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; win-8122         ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; win-8122         ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; win-8122         ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; win-8122         ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 

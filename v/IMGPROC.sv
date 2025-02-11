@@ -5,10 +5,13 @@ module IMGPROC(
     iRST,
     conv_dir,
     conv_on,
-    img_proc_out
+    img_proc_out,
+    red,
+    green,
+    blue
 );
 
-input	[11:0]	iDATA;
+input	[11:0]	iDATA, red, green, blue;
 input		iDVAL;
 input		iCLK;
 input		iRST;
@@ -33,8 +36,9 @@ LINE_BUFFER_1TAP u0(
 
 // outputting greyscale pixel by taking average of 2x2 matrix
 greyscale g1(
-        .data_in_2(mDATA_0), 
-        .data_in_1(iDATA), 
+        .data_in_2(red), //mDATA_0
+        .data_in_1(green), //iDATA
+        .data_in_3(blue),
         .clk(iCLK), 
         .rst_n(iRST), 
         .gs_out(gs_out),

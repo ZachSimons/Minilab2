@@ -342,7 +342,10 @@ IMGPROC           i2 (
                      .iRST(DLY_RST_1),
                      .conv_dir(SW[3]),
                      .conv_on(SW[2]),
-                     .img_proc_out(img_proc_out)
+                     .img_proc_out(img_proc_out),
+                     .red(rgb_red),
+                     .green(rgb_green),
+                     .blue(rgb_blue)
                     );
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
